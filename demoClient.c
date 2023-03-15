@@ -9,14 +9,18 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-#define PORT 8080
+#define PORT 8080					//sets port number
    
 int main(int argc, char const *argv[])
 {
-    int sock = 0, valread;
-    struct sockaddr_in serv_addr;
+    int sock = 0, valread;				//variables required;
+    
+    struct sockaddr_in serv_addr;		//socket addressing 
+    //sending first msg with a buffer for spacing
     char *hello = "Hello from client";
     char buffer[1024] = {0};
+
+    //checks to see if the socket was created with the file descriptor (socket())
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
         printf("\n Socket creation error \n");
@@ -26,6 +30,7 @@ int main(int argc, char const *argv[])
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_port = htons(PORT);
        
+    //another set of fail safes, first for an incorrect address, next for issues with connection
     // Convert IPv4 and IPv6 addresses from text to binary form
     if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) 
     {
@@ -38,8 +43,13 @@ int main(int argc, char const *argv[])
         printf("\nConnection Failed \n");
         return -1;
     }
+
+    //when all failsafes are passed, a message between client and server can be sent.
+    //sends the message to the server
     send(sock , hello , strlen(hello) , 0 );
     printf("Hello message sent\n");
+	
+    //reads the response from the socket or client
     valread = read( sock , buffer, 1024);
     printf("%s\n",buffer );
     return 0;
