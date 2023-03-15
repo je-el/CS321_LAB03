@@ -54,3 +54,10 @@ int main(int argc, char const *argv[])
     printf("%s\n",buffer );
     return 0;
 }
+
+//outside of main, two functions, one for each client
+void ClientOne() {
+}
+
+void ClientTwo() {
+}
