@@ -109,7 +109,7 @@ int main(int argc, char const *argv[])
 			for (int i = 0; i < clients.size(); i++){
 				//if (clients[i], buffer, strlen(buffer), 0);
 				if (clients[i] != new_socket){
-				       send(clients[i],	message.c_str(), message.legth(), 0);
+				       send(clients[i],	message.c_str(), message.length(), 0);
 			//there was a reason why I used the c_str() function but I forgot why exactly I needed it compared to just reading the string ....
 				}
 
