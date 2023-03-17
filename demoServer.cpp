@@ -1,7 +1,7 @@
 //CS321_Lab03
 //Group: Lisa Jacklin, Jewel Maldonado
 //Server file
-//language: C
+//language: C++
 
 
 // Server side C/C++ program to demonstrate Socket programming
