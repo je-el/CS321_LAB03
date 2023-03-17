@@ -22,7 +22,7 @@ int main(int argc, char const *argv[])
     //variables needed
     int server_fd, new_socket, valread;
     struct sockaddr_in address; // specifies a socket address 
-    // 
+    				// 
     int opt = 1;
     int addrlen = sizeof(address);
     char buffer[1024] = {0};
