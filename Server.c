@@ -88,7 +88,7 @@ int main(int argc, char const *argv[])
 		valread = read(new_socket, buffer, 1024);
 		if(valread ==0){
 			//client has disconnected
-			prinf("Client %s disconnected. Total Clients: %d\n",client_names[new_socket], clients.size()-1);
+			printf("Client %s disconnected. Total Clients: %d\n",client_names[new_socket], clients.size()-1);
 			clients.erase(std::remove(clients.begin(), clients.end(), new_socket), clients.end());
 			client_names.erase(client_names.begin() + (clients.size()));
 			break;
