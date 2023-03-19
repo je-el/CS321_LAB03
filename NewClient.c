@@ -93,16 +93,23 @@ void client(char *name)
 
 // get client name from user
 //this is where issues begin, Edit this asap
+/*since this chunk was giving issues, I have decided to pull it entirely out
 void get_client_name(char *name, int size) {
     printf("Enter your name: ");
     fgets(name, size, stdin);
     name[strlen(name)-1] = '\0';
 }
-
+*/
 int main(int argc, char const *argv[])
 {
     char name[1024];
-    get_client_name(name, 1024);
+    char name2[1024];
+    //get_client_name(name, 1024);
+    
     client(name);
+    client(name2);
+
+    //now to check that both of these clients have been created....?
+
     return 0;
 }
