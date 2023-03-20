@@ -25,7 +25,7 @@ x6. cannot be aborted by hitting control-c
    
 //rather than the code creating the client being within main, 
 //the code is within a function that will be implemented in main
-void client(char *name, int client_num)
+void client(char *name)
 {
     int sock = 0, valread;
     struct sockaddr_in serv_addr;              
@@ -110,8 +110,8 @@ int main(int argc, char const *argv[])
     int cli1 = 1, cli2 = 2;
     //get_client_name(name, 1024);
     
-    client(name,cli1);
-    client(name2,cli2);
+    client(name);
+    client(name2);
 
     return 0;
 }
