@@ -75,7 +75,7 @@ void client(char *name)
 
     char msg[1024];
     while(1) {
-        printf("Client: " + name);
+        printf("Client %d : ",  name);
         fgets(msg, 1024, stdin);
         send(sock , msg , strlen(msg) , 0 );
         if(strncmp(msg, "BYE", 3) == 0) {
