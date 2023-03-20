@@ -63,15 +63,15 @@ void client(char *name)
 
      //one idea to communicate through messages from user
      char data[1024];
-		int read = recv(clientSocket,data,1024,0);
+		int read = recv(sock,data,1024,0);
 		data[read] = '\0';
 		printf("%s\n",data);
 
      char input[1024];
      scanf("%s", input);
-     send (clientSocket, input, 1024, 0);
+     send (sock, input, 1024, 0);
      
-     read = recv(clientSocket,data,1024, 0);
+     int byte_read = recv(sock,data,1024, 0);
      printf("%s\n", data);
      
 
@@ -84,7 +84,7 @@ void client(char *name)
             printf("Closing connection...\n");
             break;
         }
-        valread = read(sock , buffer, 1024);
+        valread = byte_read;
         printf("%s\n",buffer );
     }
 
