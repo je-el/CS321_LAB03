@@ -54,9 +54,7 @@ void client(char *name)
     }
     else {
         printf("\n Connection Established.\n");
-	  return;  
-    }
-
+   
     //within here, since connection has been established, a 
     //code block can be executed to print data.
 
@@ -87,6 +85,10 @@ void client(char *name)
         valread = byte_read;
         printf("%s\n",buffer );
     }
+
+	  return;  
+    }
+
 
     close(sock);
 }
