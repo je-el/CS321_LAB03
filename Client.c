@@ -152,7 +152,8 @@ void client(char * name) {
 
     // get client name from user
     //this is where issues begin, Edit this asap
-    /*since this chunk was giving issues, I have decided to pull it entirely out
+    /*
+    //since this chunk was giving issues, I have decided to pull it entirely out
     void get_client_name(char *name, int size) {
         printf("Enter your name: ");
         fgets(name, size, stdin);
@@ -160,8 +161,7 @@ void client(char * name) {
     }
     */
 
-    int main(int argc, char
-      const * argv[]) {
+    int main(int argc, char const * argv[]) {
       char name[1024];
       char name2[1024];
       int cli1 = 1, cli2 = 2;
