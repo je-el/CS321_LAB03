@@ -53,7 +53,7 @@ void client(char *name)
         return;
     }
     else {
-        printf("\n Connection Established.\n");
+        printf("\n Connection Established...\n");
    
     //within here, since connection has been established, a 
     //code block can be executed to print data.
@@ -63,19 +63,19 @@ void client(char *name)
      char data[1024];
 		int read = recv(sock,data,1024,0);
 		data[read] = '\0';
-		printf("%s\n",data);
+		printf("Client: %s\n",data);
 
      char input[1024];
      scanf("%s", input);
      send (sock, input, 1024, 0);
      
      int byte_read = recv(sock,data,1024, 0);
-     printf("%s\n", data);
+     printf("Client:%s\n", data);
      
 
     char msg[1024];
     while(1) {
-        printf("%s: ", name);
+        printf("Client: ", name);
         fgets(msg, 1024, stdin);
         send(sock , msg , strlen(msg) , 0 );
         if(strncmp(msg, "BYE", 3) == 0) {
@@ -102,6 +102,7 @@ void get_client_name(char *name, int size) {
     name[strlen(name)-1] = '\0';
 }
 */
+
 int main(int argc, char const *argv[])
 {
     char name[1024];
@@ -110,8 +111,6 @@ int main(int argc, char const *argv[])
     
     client(name);
     client(name2);
-
-    //now to check that both of these clients have been created....?
 
     return 0;
 }
