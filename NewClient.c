@@ -9,7 +9,7 @@ Objective:
 3. the server should forward the accepted message from one client to the next
 4.should only work properly when two clients are up
 5.server should end when one client sends BYE.
-x6. cannot be aborted by hitting control-c
+x6. cannot be aborted by hitting control-c in the sevrer, bbut I dunno if we also need it for the client file as well??
 7.assume both client and server are one the same machine
 8. send client pids to sever to establish connections
 
@@ -25,7 +25,7 @@ x6. cannot be aborted by hitting control-c
    
 //rather than the code creating the client being within main, 
 //the code is within a function that will be implemented in main
-void client(char *name, int client_num)
+void client(char *name)
 {
     int sock = 0, valread;
     struct sockaddr_in serv_addr;              
@@ -106,6 +106,15 @@ void client(char *name, int client_num)
 		int byte_read = recv(sock,data,1024,0);
 		data[byte_read] = '\0';
 		printf("Client: %s\n",data);
+    //within here, since connection has been established, a 
+    //code block can be executed to print data.
+
+
+     //one idea to communicate through messages from user
+     char data[1024];
+		int read = recv(sock,data,1024,0);
+		data[read] = '\0';
+		printf("Clcli1 %s\n",data);
 
      	char input[1024];
      		scanf("%s", input);
@@ -124,6 +133,15 @@ void client(char *name, int client_num)
             		printf("Closing connection...\n");
             		break;
         	}
+    char msg[1024];
+    while(1) {
+        printf(":%s",name);
+        fgets(msg, 1024, stdin);
+        send(sock , msg , strlen(msg) , 0 );
+        if(strncmp(msg, "BYE", 3) == 0) {
+            printf("Closing connection...\n");
+            break;
+        }
         valread = byte_read;
         printf("%s\n",buffer );
     }
@@ -160,6 +178,9 @@ int main(int argc, char const *argv[])
     */
     client(name,cli1);
     client(name2,cli2);
+    
+    client(name);
+    client(name2);
 
     return 0;
 }
