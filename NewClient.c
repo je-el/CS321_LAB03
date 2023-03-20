@@ -126,7 +126,7 @@ void client(char *name)
 
     	char msg[1024];
     	while(1) {
-        	printf("Client %d: %s",  client_num,name);
+        	printf("Client %s chatting:", name);
         	fgets(msg, 1024, stdin);
         	send(sock , msg , strlen(msg) , 0 );
         	if(strncmp(msg, "BYE", 3) == 0) {
@@ -176,8 +176,8 @@ int main(int argc, char const *argv[])
     pid_t pid2 = getpid();
     client(pid2);
     */
-    client(name,cli1);
-    client(name2,cli2);
+    client(name);
+    client(name2);
     
     client(name);
     client(name2);
