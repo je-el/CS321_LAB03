@@ -63,7 +63,7 @@ void client(char *name, int client_num)
      char data[1024];
 		int read = recv(sock,data,1024,0);
 		data[read] = '\0';
-		printf("Client: %s\n",data);
+		printf("Clcli1 %s\n",data);
 
      char input[1024];
      scanf("%s", input);
@@ -75,7 +75,7 @@ void client(char *name, int client_num)
 
     char msg[1024];
     while(1) {
-        printf("Client %d: %s",  client_num,name);
+        printf(":%s",name);
         fgets(msg, 1024, stdin);
         send(sock , msg , strlen(msg) , 0 );
         if(strncmp(msg, "BYE", 3) == 0) {
