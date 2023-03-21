@@ -82,10 +82,11 @@ void client(char *name)
 			{
                 		printf("Closing connection...\n");
                 		break;
-            		}
+            		} else { //added to make sure the recieved code is processed.
             		valread = recv(sock, buffer, 1024, 0);
             		buffer[valread] = '\0';
             		printf("Client %d received: %s\n", pid, buffer);
+			}
         	}
 	}
 	//also see in main how the clients will show the different pid's of each client
@@ -158,8 +159,9 @@ void client(char *name)
 
 int main(int argc, char const *argv[])
 {
-	char name[1024];
-    	char name2[1024];
+	//these two were originally used to try and display the two separate clients 'names'
+	//char name[1024];
+    //char name2[1024];
     
     	//get_client_name(name, 1024);
     
@@ -168,7 +170,10 @@ int main(int argc, char const *argv[])
     	client(pid1);
     	pid_t pid2 = getpid();
     	client(pid2);
-    	/*
+
+    	/* 
+	//these were originally so we could name each client separately, but if we use the pid, we should be able
+	//to display the pid to the user as the client 'name' instead so we can differ between the clients.
     		client(name);
     		client(name2);
     
