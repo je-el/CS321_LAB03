@@ -5,7 +5,7 @@
 - Jewel Maldonado
   
 ## Lab 3  
-### Assignment Task
+### Assignment Task:
 This assignment will familiarize 
 you with the basic communication between two processes using system calls.
 (work in group of two)  
