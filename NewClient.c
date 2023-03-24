@@ -75,18 +75,20 @@ void client(char *name)
         	// chat loop
         	char msg[1024];
         	while(1) {
-            		printf("Client %d Chatting: ", pid);
+            		printf("Client %d Enter Message: ", pid);
             		fgets(msg, 1024, stdin);
-            		send(sock , msg , strlen(msg) , 0 );
-            		if(strncmp(msg, "BYE", 3) == 0) 
+            		send(sock , msg , strlen(msg) , 0 );//send message to server
+            		valread = read(sock, buffer, 1024); // retrieves the message recieved from other client
+			printf("%s\n",buffer); //will print the received message
+			if(strncmp(msg, "BYE", 3) == 0) 
 			{
                 		printf("Closing connection...\n");
                 		break;
             		} else { //added to make sure the recieved code is processed.
-            		valread = recv(sock, buffer, 1024, 0);
-            		buffer[valread] = '\0';
-            		printf("Client %d received: %s\n", pid, buffer);
-			}
+            			valread = recv(sock, buffer, 1024, 0);
+            			buffer[valread] = '\0';
+            			printf("Client %d received: %s\n", pid, buffer);
+			} else 
         	}
 	}
 	//also see in main how the clients will show the different pid's of each client
