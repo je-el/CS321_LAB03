@@ -15,7 +15,9 @@ In this assignment you will create a single node,
 command line-based chat application to communicate between two client processes through a server process
 The chat application will have two clients and one server
 The clients will send and receive message to/from each other through the server.
-You can start with the code shared in Canvas: **[Server.c](Server.c)** and **[Client.c](Client.c)**  
+Code will be added into provided code from canvas. Below are th eriles to compile and run:  
+- The Server must compile and run first before the Client files are compiled and run.   
+[Server.c](Server.c) and [Client.c](Client.c) and [NewClient.c](NewClient.c) 
 
 ### Requirements:  
 Modify the codes to do the following:  
@@ -33,3 +35,7 @@ Modify the codes to do the following:
 - knowing if the clients could be connected to the server through a single client file for both, or to create separate files for each client.
 - getting the data recieved from one client to the server sent to the other client from the server (forwarding)
 - making adjustments to send custom messages from client to client.
+
+#### Improvements:
+- In the future we will need to find a way to clean up the structure of sending and receiving the messsages. Right now the clients must send a message in order to receive any messages from the other client. 
+	- one way we could do this is through using threading which can be seen to be attempted in [Our previous client file](Notes_Progress/Client.c) 
