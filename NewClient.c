@@ -74,86 +74,22 @@ void client(char *name)
    
         	// chat loop
         	char msg[1024];
-        	while(1) {
-            		printf("Client %d Enter Message: ", pid);
-            		fgets(msg, 1024, stdin);
-            		send(sock , msg , strlen(msg) , 0 );//send message to server
-            		valread = read(sock, buffer, 1024); // retrieves the message recieved from other client
-			printf("%s\n",buffer); //will print the received message
-			if(strncmp(msg, "BYE", 3) == 0) 
-			{
-                		printf("Closing connection...\n");
-                		break;
-            		} else { //added to make sure the recieved code is processed.
-            			valread = recv(sock, buffer, 1024, 0);
-            			buffer[valread] = '\0';
-            			printf("Client %d received: %s\n", pid, buffer);
-			} 
-        	}
+		while(1) {
+                        printf("Client %d Enter Message: ", pid);
+                        fgets(msg, 1024, stdin);
+                        send(sock , msg , strlen(msg) , 0 ); // send message to server
+                        if(strncmp(msg, "BYE", 3) == 0) {
+                                printf("Closing connection...\n");
+                                break;
+                        } else {
+                                valread = recv(sock, buffer, 1024, 0);
+                                buffer[valread] = '\0';
+                                printf("Client %d received: %s\n", pid, buffer);
+                                valread = read(sock, buffer, 1024); // retrieves the message received from the other client
+                                printf("%s\n",buffer); // will print the received message 
+                        }
+                }
 	}
-	//also see in main how the clients will show the different pid's of each client
-	
-	/*
-	//this is another way to do it
-	
-	char pid_msg[1024];
-	snprintf(pid_msg, sizeof(pid_msg), "PID:%d", pid);
-	send(sock, pid_msg, strlen(pid_msg), 0);
-	//recieve a message from the server
-	int reading = recv(sock, buffer, 1024, 0);
-        buffer[read] = '\0';
-        printf("%s\n", buffer);
-	//then you start chatting with the while loop
-	
-
-     	//one idea to communicate through messages from user
-     	char data[1024];
-		int byte_read = recv(sock,data,1024,0);
-		data[byte_read] = '\0';
-		printf("Client: %s\n",data);
-     	//within here, since connection has been established, a 
-     	//code block can be executed to print data.
-
-
-     	//one idea to communicate through messages from user
-     	char data[1024];
-		int read = recv(sock,data,1024,0);
-		data[read] = '\0';
-		printf("Clcli1 %s\n",data);
-
-     	char input[1024];
-     		scanf("%s", input);
-     		send (sock, input, 1024, 0);
-     
-     		byte_read = recv(sock,data,1024, 0);
-     		printf("Client:%s\n", data);
-     
-
-    	char msg[1024];
-    	while(1) {
-        	printf("Client %s chatting:", name);
-        	fgets(msg, 1024, stdin);
-        	send(sock , msg , strlen(msg) , 0 );
-        	if(strncmp(msg, "BYE", 3) == 0) {
-            		printf("Closing connection...\n");
-            		break;
-        	}
-    		char msg[1024];
-    		while(1) {
-        		printf(":%s",name);
-        		fgets(msg, 1024, stdin);
-        		send(sock , msg , strlen(msg) , 0 );
-        		if(strncmp(msg, "BYE", 3) == 0) {
-            			printf("Closing connection...\n");
-            			break;
-        		}
-        		valread = byte_read;
-        		printf("%s\n",buffer );
-    		}
-
-	  	return;  
-    	}
-    	*/
 
     close(sock);
 }

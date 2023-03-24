@@ -1,10 +1,21 @@
 /*
 CS 321 Lab 3
 Edited and Coded by Jewel Maldonado and Lisa Jacklin
-Client.c file
+NewClient.c file
+
+Objective: 
+1. create two different clients
+2. read messages from the user input rather than them being hardcoded
+3. the server should forward the accepted message from one client to the next
+4.should only work properly when two clients are up
+5.server should end when one client sends BYE.
+x6. cannot be aborted by hitting control-c in the sevrer, bbut I dunno if we also need it for the client file as well??
+7.assume both client and server are one the same machine
+8. send client pids to sever to establish connections
+
 */
 
-//2nd  Client side C program to demonstrate Socket programming
+// Client side C program to demonstrate Socket programming
 #include <stdio.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -63,22 +74,21 @@ void client(char *name)
    
         	// chat loop
         	char msg[1024];
-        	while(1) {
-            		printf("Client %d Enter Message: ", pid);
-            		fgets(msg, 1024, stdin);
-            		send(sock , msg , strlen(msg) , 0 );//send message to server
-			if(strncmp(msg, "BYE", 3) == 0) 
-			{
-                		printf("Closing connection...\n");
-                		break;
-            		} else { //added to make sure the recieved code is processed.
-            			valread = recv(sock, buffer, 1024, 0);
-            			buffer[valread] = '\0';
-            			printf("Client %d received: %s\n", pid, buffer);
-			}
-			valread = read(sock, buffer, 1024); // retrieves the message recieved from other client
-                        printf("%s\n",buffer); //will print the received message 
-        	}
+		while(1) {
+                        printf("Client %d Enter Message: ", pid);
+                        fgets(msg, 1024, stdin);
+                        send(sock , msg , strlen(msg) , 0 ); // send message to server
+                        if(strncmp(msg, "BYE", 3) == 0) {
+                                printf("Closing connection...\n");
+                                break;
+                        } else {
+                                valread = recv(sock, buffer, 1024, 0);
+                                buffer[valread] = '\0';
+                                printf("Client %d received: %s\n", pid, buffer);
+                                valread = read(sock, buffer, 1024); // retrieves the message received from the other client
+                                printf("%s\n",buffer); // will print the received message 
+                        }
+                }
 	}
 
     close(sock);
@@ -93,8 +103,17 @@ int main(int argc, char const *argv[])
     
     
     	//lets use the pid's to show the names of each client rather than using client "1" client "2" idea.
-   	//pid_t pid2 = getpid();
+    	//pid_t pid2 = getpid();
     	client(name2);
 
+    	/* 
+	//these were originally so we could name each client separately, but if we use the pid, we should be able
+	//to display the pid to the user as the client 'name' instead so we can differ between the clients.
+    		client(name);
+    		client(name2);
+    
+    		client(name);
+    		client(name2);
+	*/
     	return 0;
 }
