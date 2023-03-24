@@ -77,7 +77,7 @@ void client(char *name)
             			valread = recv(sock, buffer, 1024, 0);
             			buffer[valread] = '\0';
             			printf("Client %d received: %s\n", pid, buffer);
-			} else 
+			} 
         	}
 	}
 

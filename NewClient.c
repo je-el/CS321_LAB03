@@ -88,7 +88,7 @@ void client(char *name)
             			valread = recv(sock, buffer, 1024, 0);
             			buffer[valread] = '\0';
             			printf("Client %d received: %s\n", pid, buffer);
-			} else 
+			} 
         	}
 	}
 	//also see in main how the clients will show the different pid's of each client
