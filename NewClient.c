@@ -161,12 +161,12 @@ int main(int argc, char const *argv[])
 {
 	//these two were originally used to try and display the two separate clients 'names'
 	//char name[1024];
-        //char name2[1024];
+        char name2[1024];
     
     
     	//lets use the pid's to show the names of each client rather than using client "1" client "2" idea.
-    	pid_t pid2 = getpid();
-    	client(pid2);
+    	//pid_t pid2 = getpid();
+    	client(name2);
 
     	/* 
 	//these were originally so we could name each client separately, but if we use the pid, we should be able
