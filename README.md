@@ -38,7 +38,7 @@ Modify the codes to do the following:
 
 #### Improvements:
 - In the future we will need to find a way to clean up the structure of sending and receiving the messsages. Right now the clients must send a message in order to receive any messages from the other client. 
-	- one way we could do this is through using threading which can be seen to be attempted in [Our previous client file](Notes_Progress/Client.c)
+	- one way we could do this is through using threading which can be seen to be attempted in [Our previous client file]([Notes_Progress/Client.c](https://github.com/je-el/CS321_LAB03/blob/main/Notes_progress/Client.c))
 	- With threading we would use a thread to run the client function and another to make it so that the client is always listening for incoming messages. This way the user wont have to submit a message in order to receive messages through the server. 
 - we would also like it if the server file can be updated to send updates to the console for example an output like this would be beneficial in knowing the status of each client:  
 ```
